@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import { RedCub } from './RedCub/RedCub';
-import { MyButton } from './RedCub/button/button';
-function App() {
+// import logo from './logo.svg';
+import "./App.css";
+import { RedCub } from "./RedCub/RedCub";
+import { MyButton } from "./RedCub/button/button";
 
-  let text = "hello react";
+import React from "react";
+import AppLes02 from './Les02/AppLes02/AppLes02'
+function App() {
+ 
+
   return (
-   <div className='container'>
-    {/* <RedCub></RedCub> */}
-    <RedCub text="my text 1" count="4" second_text="hi"></RedCub>
-    <RedCub text="qwert" second_text="hi!"></RedCub>
-    <RedCub text="my text 3"></RedCub>
-    <MyButton text="click"></MyButton>
-    <MyButton text="dont click"></MyButton>
-    <MyButton text="click 2"></MyButton>
-    <MyButton></MyButton>
-    <MyButton></MyButton>
-    <MyButton></MyButton>
-   </div>
-    ) ;
+    <div className="container">
+      <AppLes02></AppLes02>
+
+    </div>
+  );
 }
 
 export default App;
