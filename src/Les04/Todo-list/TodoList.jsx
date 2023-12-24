@@ -23,7 +23,7 @@ export function TodoList() {
         <ListItem text={item} />
       </li>,
     ]);
-    input.current.value = "";
+    input.current.value= "";
 
   };
 
