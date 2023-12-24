@@ -7,6 +7,7 @@ import React from "react";
 import AppLes02 from './Les02/AppLes02/AppLes02'
 import { Les03 } from "./Les03/Les03";
 import { Les04 } from "./Les04/Les04";
+import { ContactIndex } from "./Les05/Components/ContactIndex/ContactIndex";
 function App() {
  
 
@@ -15,7 +16,8 @@ function App() {
       /* <AppLes02></AppLes02> */
     /* </div> */
     // <Les03></Les03>
-    <Les04></Les04>
+    // <Les04></Les04>
+    <ContactIndex></ContactIndex>
   );
 }
 
