@@ -4,6 +4,8 @@ export function Footer(){
     return(
     <div className={`${style.upperLine} text-center text-white`}>
         Contacts all rights reserved
+        <br />
+        Look at this row!!!!!!!!!!!!!!
     </div>
     );  
 }
