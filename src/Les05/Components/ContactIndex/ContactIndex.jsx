@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { AddRandomContact } from "../AddRandomContact/AddRandomContact";
@@ -7,7 +7,7 @@ import { AddContact } from "../AddContact/AddContact";
 import { FavouriteContact } from "../FavoriteContact/FavoriteContact";
 import { GeneralContacts } from "../GeneralContacts/GeneralContacts";
 export function ContactIndex() {
-  let contacts = [
+  const [contacts,setContacts] = useState([
     {
       id: 1,
       name: "Taras Shevchenko",
@@ -29,10 +29,32 @@ export function ContactIndex() {
       phone: "09503843908",
       isFavorite: false,
     },
-  ];
-  let show = ()=>{
-    alert("Contact Index");
+  ]);
+  
+  const createContact = (contact)=>{
+      const newContact={
+        id:contacts.length+1,
+        ...contact,
+        isFavorite:false
+      }
+      setContacts([...contacts,newContact]);
   }
+
+  const toggleFavorite = (id)=>{
+    //contacts.map(obj=>obj.id==id?isFavorite==!isFavorite:isFavorite);
+    const updateContacts = contacts.map(obj=>{
+      if (obj.id==id) {
+        obj.isFavorite=!obj.isFavorite;
+      }
+      return obj;
+    });
+    setContacts(updateContacts);
+  }
+
+  const handleDelete = (id)=>{
+    setContacts(contacts.filter(obj=>obj.id!==id))
+  }
+
   return (
     <div className="text-center" style={{ minHeight: "85vh" }}>
       <Header></Header>
@@ -44,13 +66,13 @@ export function ContactIndex() {
           <DeleteAllContacts></DeleteAllContacts>
         </div>
         <div className="row">
-          <AddContact show={show}></AddContact>
+          <AddContact createContact={createContact}></AddContact>
         </div>
         <div className="row">
-          <FavouriteContact contacts={contacts.filter(obj=>obj.isFavorite)}></FavouriteContact>
+          <FavouriteContact handleDelete={handleDelete}  toggleFavorite={toggleFavorite} contacts={contacts.filter(obj=>obj.isFavorite)}></FavouriteContact>
         </div>
         <div className="row">
-          <GeneralContacts contacts={contacts.filter(obj=>!obj.isFavorite)}></GeneralContacts>
+          <GeneralContacts handleDelete={handleDelete} toggleFavorite={toggleFavorite} contacts={contacts.filter(obj=>!obj.isFavorite)}></GeneralContacts>
         </div>
       </div>
 
