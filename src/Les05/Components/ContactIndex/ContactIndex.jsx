@@ -7,7 +7,7 @@ import { AddContact } from "../AddContact/AddContact";
 import { FavouriteContact } from "../FavoriteContact/FavoriteContact";
 import { GeneralContacts } from "../GeneralContacts/GeneralContacts";
 export function ContactIndex() {
-  const [contacts,setContacts] = useState([
+  const [contacts, setContacts] = useState([
     {
       id: 1,
       name: "Taras Shevchenko",
@@ -30,49 +30,73 @@ export function ContactIndex() {
       isFavorite: false,
     },
   ]);
-  
-  const createContact = (contact)=>{
-      const newContact={
-        id:contacts.length+1,
-        ...contact,
-        isFavorite:false
-      }
-      setContacts([...contacts,newContact]);
-  }
+  const [editContact, setEditContact] = useState(null);
 
-  const toggleFavorite = (id)=>{
+  const createContact = (contact) => {
+    const newContact = {
+      id: contacts.length + 1,
+      ...contact,
+      isFavorite: false,
+    };
+    setContacts([...contacts, newContact]);
+  };
+
+  const toggleFavorite = (id) => {
     //contacts.map(obj=>obj.id==id?isFavorite==!isFavorite:isFavorite);
-    const updateContacts = contacts.map(obj=>{
-      if (obj.id==id) {
-        obj.isFavorite=!obj.isFavorite;
+    const updateContacts = contacts.map((obj) => {
+      if (obj.id == id) {
+        obj.isFavorite = !obj.isFavorite;
       }
       return obj;
     });
     setContacts(updateContacts);
-  }
+  };
 
-  const handleDelete = (id)=>{
-    setContacts(contacts.filter(obj=>obj.id!==id))
-  }
+  const handleDelete = (id) => {
+    setContacts(contacts.filter((obj) => obj.id !== id));
+  };
+
+  const deleteContacts = () => {
+    setContacts([]);
+  };
+
+  const handleEditing = (id) => {
+    setEditContact(contacts.find((obj) => obj.id === id));
+  };
 
   return (
     <div className="text-center" style={{ minHeight: "85vh" }}>
       <Header></Header>
       <div className="row py-3">
         <div className="col-4 offset-2">
-          <AddRandomContact></AddRandomContact>
+          <AddRandomContact createContact={createContact}></AddRandomContact>
         </div>
         <div className="col-4">
-          <DeleteAllContacts></DeleteAllContacts>
+          <DeleteAllContacts
+            deleteContacts={deleteContacts}
+          ></DeleteAllContacts>
         </div>
         <div className="row">
-          <AddContact createContact={createContact}></AddContact>
+          <AddContact
+            createContact={createContact}
+            editContact={editContact}
+          ></AddContact>
         </div>
         <div className="row">
-          <FavouriteContact handleDelete={handleDelete}  toggleFavorite={toggleFavorite} contacts={contacts.filter(obj=>obj.isFavorite)}></FavouriteContact>
+          <FavouriteContact
+            handleDelete={handleDelete}
+            toggleFavorite={toggleFavorite}
+            contacts={contacts.filter((obj) => obj.isFavorite)}
+            handleEditing={handleEditing}
+          ></FavouriteContact>
         </div>
         <div className="row">
-          <GeneralContacts handleDelete={handleDelete} toggleFavorite={toggleFavorite} contacts={contacts.filter(obj=>!obj.isFavorite)}></GeneralContacts>
+          <GeneralContacts
+            handleDelete={handleDelete}
+            toggleFavorite={toggleFavorite}
+            contacts={contacts.filter((obj) => !obj.isFavorite)}
+            handleEditing={handleEditing}
+          ></GeneralContacts>
         </div>
       </div>
 

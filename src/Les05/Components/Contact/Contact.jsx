@@ -10,8 +10,6 @@ export function Contact(props) {
       props.toggleFavorite(props.contact.id);
   }
 
-  
-
   return (
     <div className={`row ${style.container}`}>
       <div className="col-2 col-md-1 pt-2 pt-md-1">
@@ -36,7 +34,7 @@ export function Contact(props) {
         </button>
       </div>
       <div className="col-2 col-md-2 pt-2 pt-md-3">
-          <button className="btn btn-primary btn-sm m-1">
+          <button className="btn btn-primary btn-sm m-1" onClick={()=>props.handleEditing(props.contact.id)}>
           <i class="bi bi-pencil-square"></i>
           </button>
           <button onClick={()=>props.handleDelete(props.contact.id)} className="btn btn-danger btn-sm m-1">
