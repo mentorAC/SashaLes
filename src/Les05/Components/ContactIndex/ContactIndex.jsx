@@ -31,7 +31,6 @@ export function ContactIndex() {
     },
   ]);
   const [editContact, setEditContact] = useState(null);
-
   const createContact = (contact) => {
     const newContact = {
       id: contacts.length + 1,
@@ -64,6 +63,11 @@ export function ContactIndex() {
     setEditContact(contacts.find((obj) => obj.id === id));
   };
 
+  const update = ()=>{
+    setContacts([...contacts]);
+    setEditContact(null);
+  }
+
   return (
     <div className="text-center" style={{ minHeight: "85vh" }}>
       <Header></Header>
@@ -80,6 +84,7 @@ export function ContactIndex() {
           <AddContact
             createContact={createContact}
             editContact={editContact}
+            update={update}
           ></AddContact>
         </div>
         <div className="row">
@@ -99,7 +104,6 @@ export function ContactIndex() {
           ></GeneralContacts>
         </div>
       </div>
-
       <Footer></Footer>
     </div>
   );
