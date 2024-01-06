@@ -9,7 +9,7 @@ import Logo from "../../../images/react.png";
                 <img className={style.img} src={Logo}></img>
                 </div>
                 <div className="col">
-                    <h1 className="text-white">Contacts</h1>
+                    <h1 className="text-white text-start">Contacts</h1>
                 </div>
             </div>
        
