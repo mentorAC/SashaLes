@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 
 export function AddContact(props) {
@@ -13,6 +14,8 @@ export function AddContact(props) {
     const phone = e.target.elements.phoneNumber.value.trim();
     if (name === "" || email === "" || phone === "") {
       return;
+
+
     }
     const contact = {
       name: name,
@@ -24,6 +27,7 @@ export function AddContact(props) {
     e.target.elements.email.value = "";
     e.target.elements.phoneNumber.value = "";
   };
+
 
   const editContact = (e) => {
     e.preventDefault();
@@ -75,6 +79,8 @@ console.log(props.editContact);
               }
             ></input>
           </div>
+
+ 
         </div>
         <div className="col-12 col-md-6 offset-md-3">
           <button
